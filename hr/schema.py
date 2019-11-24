@@ -17,6 +17,10 @@ class EmployeesType(DjangoObjectType) :
     class Meta:
         model = Employees
 
+class EmployeesType(DjangoObjectType) :
+    class Meta:
+        model = Employees
+
 class JobHistoryType(DjangoObjectType) :
     class Meta:
         model = JobHistory
@@ -42,6 +46,7 @@ class Query(graphene.ObjectType):
     
     countries   = graphene.List(CountriesType)
     departments = graphene.List(DepartmentsType)
+    employees = graphene.List(EmployeesType)
     jobHistory  = graphene.List(JobHistoryType)
     jobs        = graphene.List(JobsType)
     locations   = graphene.List(LocationsType)
@@ -55,6 +60,9 @@ class Query(graphene.ObjectType):
     # departments resolver
     def resolve_departments(self, info, **kwargs):
         return Departments.objects.all()
+    # employees resolver
+    def resolve_employees(self, info, **kwargs):
+        return Employees.objects.all()
     # jobHistory resolver
     def resolve_jobHistory(self, info, **kwargs):
         return JobHistory.objects.all()
